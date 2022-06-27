@@ -1,4 +1,19 @@
+import bcrypt from 'bcryptjs'
 const data = {
+    users: [
+        {
+            name: 'admin',
+            email: 'admin@admin.com',
+            password: bcrypt.hashSync('123456'),
+            isAdmin: true
+        },
+        {
+            name: 'user',
+            email: 'user@user.com',
+            password: bcrypt.hashSync('123456'),
+            isAdmin: false
+        }
+    ],
     products: [
         {
             name: "Free shirt",
@@ -36,8 +51,8 @@ const data = {
             countInStock: 25,
             description: "A popular shirt"
         }, {
-            name: "Golf shirt",
-            slug: "glof-shirts",
+            name: "a shirt",
+            slug: "a-shirts",
             category: 'Shirts',
             image: 'images/shirts4.jpg',
             price: 80,
@@ -60,8 +75,8 @@ const data = {
             description: "A popular shirt"
         },
         {
-            name: "Golf shirt",
-            slug: "glof-shirts",
+            name: "ss shirt",
+            slug: "ss-shirts",
             category: 'Shirts',
             image: 'images/shirts6.jpg',
             price: 80,
