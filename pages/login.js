@@ -55,7 +55,7 @@ export default function LoginScreen() {
                             required: 'please enter password',
                             minLength: { value: 6, message: 'password is more than 5 chars' }
                         })}
-                        className=' w-full' id="password" autoFocus></input>
+                        className=' w-full' id="password" ></input>
                     {errors.password && <div className='text-red-500'>{errors.password.message}</div>}
                 </div>
                 <div className='mb-4'>
@@ -63,7 +63,7 @@ export default function LoginScreen() {
                 </div>
                 <div className='mb-4'>
                     Don&apos;t have an account? &nbsp;
-                    <Link href='/register'>Register</Link>
+                    <Link href={`/register?redirect=${redirect || '/'}`}>Register</Link>
                 </div>
             </form>
         </Layout>

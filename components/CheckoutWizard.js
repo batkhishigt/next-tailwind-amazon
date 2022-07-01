@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function CheckoutWizaerd({ activeStep = 0 }) {
+export default function CheckoutWizard({ activeStep = 0 }) {
     return (
         <div className='mb-5 flex flex-wrap'>
             {

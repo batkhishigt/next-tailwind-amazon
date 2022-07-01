@@ -1,8 +1,9 @@
 import React, { useContext, useEffect } from 'react'
-import CheckoutWizaerd from '../components/CheckoutWizaerd'
+import CheckoutWizard from '../components/CheckoutWizard'
 import Layout from '../components/Layout'
 import { useForm } from 'react-hook-form'
 import { Store } from '../utils/Store'
+import { useRouter } from 'next/router'
 import Cookies from 'js-cookie'
 
 
@@ -10,7 +11,8 @@ export default function ShippingScreen() {
     const { state, dispatch } = useContext(Store)
     const { cart } = state
     const { shippingAddress } = cart
-    const { handleSubmit, register, formState: { errors }, setValue, getValues } = useForm();
+    const { handleSubmit, register, formState: { errors }, setValue } = useForm();
+    const router = useRouter();
 
     useEffect(() => {
         setValue('fullName', shippingAddress.fullName)
@@ -20,18 +22,18 @@ export default function ShippingScreen() {
         setValue('country', shippingAddress.country)
     }, [setValue, shippingAddress])
 
-
     const submitHandler = ({ fullName, address, city, postalCode, country }) => {
         dispatch({ type: 'SAVE_SHIPPING_ADDRESS', payload: { fullName, address, city, postalCode, country } })
         Cookies.set('cart', JSON.stringify({
             ...cart, shippingAddress: {
                 fullName, address, city, postalCode, country
             }
-        }))
+        }));
+        router.push('/payment')
     }
     return (
         <Layout title='shipping'>
-            <CheckoutWizaerd activeStep={1} />
+            <CheckoutWizard activeStep={1} />
             <form
                 className='mx-auto max-w-screen-md'
                 onSubmit={handleSubmit(submitHandler)}
